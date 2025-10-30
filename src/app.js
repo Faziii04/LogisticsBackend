@@ -16,6 +16,10 @@ app.use(express.json());
 
 app.use('/api/v1/users', userRouter);
 
+app.use('/', (req, res) => {
+    res.send("<h1>Este es un h1</h1>")
+})
+
 
 testDBConnection();
 app.get('/', (req, res) => {
