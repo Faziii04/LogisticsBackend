@@ -4,7 +4,7 @@ import { singUp } from "../controllers/user-controller.js";
 const userRouter = Router()
 
 
-userRouter.get('/:id', (req, res) => {
+userRouter.get('/', (req, res) => {
     res.send({title: 'GET user by ID '})
 })
 
