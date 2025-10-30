@@ -7,7 +7,7 @@ const pool = new Pool({connectionString: CONNECTION_STRING})
 export const testDBConnection = async () => {
     try {
         const client = await pool.connect();
-        console.log("Connection fue exitosa!");
+        console.log("Conexion fue exitosa!");
         console.log("Conectado al string: "+ CONNECTION_STRING)
         client.release()
     } catch(err) {
