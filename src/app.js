@@ -11,9 +11,13 @@ const { Pool } = pgk;
 
 const pool = new Pool({ connectionString: CONNECTION_STRING})
 
-app.use('/api/v1/users', userRouter)
-testDBConnection();
 
+app.use(express.json());
+
+app.use('/api/v1/users', userRouter);
+
+
+testDBConnection();
 app.get('/', (req, res) => {
     res.send({mensaje: "que tal bro"})
 })

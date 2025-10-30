@@ -1,13 +1,18 @@
 import { Router } from "express";
-import { singUp } from "../controllers/user-controller.js";
+import { singUp, singIn} from '../controllers/user-controller.js'
 
 const userRouter = Router()
 
+userRouter.get('/', (req, res, next) => {
+    
+})
 
-userRouter.get('/', (req, res) => {
+
+
+userRouter.get('/login/', (req, res) => {
     res.send({title: 'GET user by ID '})
 })
 
-userRouter.post('/', singUp)
+userRouter.post('/login/', singUp)
 
 export default userRouter
