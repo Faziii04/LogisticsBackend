@@ -5,13 +5,19 @@ import {CONNECTION_STRING} from './config/env.js'
 import userRouter from './routes/user.routes.js';
 import { testDBConnection } from './controllers/database-controller.js';
 
+
 const app = express();
 const { Pool } = pgk;
 
-const pool = new Pool({CONNECTION_STRING})
+const pool = new Pool({ connectionString: CONNECTION_STRING})
 
 app.use('/api/v1/users', userRouter)
 testDBConnection();
+
+app.get('/', (req, res) => {
+    res.send({mensaje: "que tal bro"})
+})
+
 
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`)
