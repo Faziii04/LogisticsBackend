@@ -23,3 +23,15 @@ export const createUser = async (userInfo) => {
     const result = await pool.query(query, values);
     return result.rows[0]
 }
+
+export const logInUser = async (ci, password) => {
+    const query = ` 
+        SELECT *
+        FROM employee
+        WHERE ci = $1 and password = $2
+    `
+    const values = [ci, password]
+    const result = await pool.query(query, values);
+    console.log(result.rows);
+    return result.rows[0]
+}

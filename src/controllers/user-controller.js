@@ -1,5 +1,5 @@
 import User from "../models/user-model.js"
-import { createUser } from "../services/user-service.js"
+import { createUser, logInUser } from "../services/user-service.js"
 
 export const getUser = async (req, res, next) => {
     try {
@@ -39,10 +39,35 @@ export const singUp = async (req, res, next) => {
         })
     }
 }
-export const singIn = async (req, res , next) => {
+export const signIn = async (req, res, next) => {
     try {
-        
-    } catch {
+        const { ci, password } = req.body;
 
+    if (!ci || !password) {
+        return res.status(400).json({ message: 'CI and password are required' });
     }
-}
+
+    const fetchedUser = await logInUser(ci, password); // ✅ correct await usage
+    fetchedUser.ci = parseInt(fetchedUser.ci)
+    console.log(fetchedUser);
+
+    if (!fetchedUser) {
+        return res.status(401).json({ message: 'Invalid CI or password' });
+    }
+
+    // create response object
+    const resInfo = {
+        message: 'Login successful',
+        user: fetchedUser,
+    };
+
+      return res.status(200).json(resInfo); // ✅ send proper JSON
+    } catch (err) {
+        console.error(err.message);
+        return res.status(500).json({
+        message: 'Internal server error',
+        error: err.message,
+        });
+    }
+};
+
