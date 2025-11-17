@@ -4,7 +4,7 @@ import {PORT} from './config/env.js'
 import {CONNECTION_STRING} from './config/env.js'
 
 import userRouter from './routes/user.routes.js';
-import packageRouter from './routes/package.route.js';
+import packageRouter from './routes/package.routes.js';
 
 import { testDBConnection } from './controllers/database-controller.js';
 
